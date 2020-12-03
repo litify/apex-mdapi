@@ -30,8 +30,19 @@
  *   at https://github.com/financialforcedev/apex-mdapi for more information
  **/
 
+// MOST OF THIS CLASS HAS BEEN COMMENTED OUT SINCE THESE ARE JUST EXAMPLES AND NOT ACTUALLY USED IN PRODUCTION
+
 public with sharing class MetadataServiceExamples
 {
+    public static MetadataService.MetadataPort createService()
+    {
+        MetadataService.MetadataPort service = new MetadataService.MetadataPort();
+        service.SessionHeader = new MetadataService.SessionHeader_element();
+        service.SessionHeader.sessionId = UserInfo.getSessionId();
+        return service;
+    }
+
+    /*
     public static void createObject()
     {
         MetadataService.MetadataPort service = createService();
@@ -150,10 +161,12 @@ public with sharing class MetadataServiceExamples
                 new MetadataService.Metadata[] { customField });
         handleSaveResults(results[0]);
     }
+    */
 
     /**
      * NOTE: Consider using Permission Sets, these can also be created and assignd with DML in Apex
      **/
+    /*
     public static void updateFieldLevelSecurity()
     {
         MetadataService.MetadataPort service = createService();
@@ -335,6 +348,7 @@ public with sharing class MetadataServiceExamples
                 new MetadataService.Metadata[] { customField });
         handleSaveResults(results[0]);
     }
+    */
 
     /**
      * Example of how to retrieve dependent picklist values
@@ -351,6 +365,7 @@ public with sharing class MetadataServiceExamples
      * https://github.com/financialforcedev/apex-mdapi/issues/93
      * https://help.salesforce.com/HTViewHelpDoc?id=fields_defining_field_dependencies.htm
      */
+    /*
     public static void getDependentPicklistValues()
     {
         // Create service
@@ -378,8 +393,8 @@ public with sharing class MetadataServiceExamples
         }
 
         System.debug( 'Filtered, Dependent Values = ' + filteredDependentValues );
-
     }
+    */
 
     /**
      * Example of how to retrieve the dependent picklist values that are both:
@@ -397,6 +412,7 @@ public with sharing class MetadataServiceExamples
      * https://github.com/financialforcedev/apex-mdapi/issues/93
      * https://help.salesforce.com/HTViewHelpDoc?id=fields_defining_field_dependencies.htm
      */
+    /*
     public static void getDependentPicklistValuesByRecordType()
     {
         // Create service
@@ -1296,6 +1312,7 @@ public with sharing class MetadataServiceExamples
 
         handleSaveResults(results[0]);
     }
+    */
 
     /**
      * If you have subscribed to the paid feature add-on "Field Audit Trail" then you can define the
@@ -1304,6 +1321,7 @@ public with sharing class MetadataServiceExamples
      * https://developer.salesforce.com/docs/atlas.en-us.field_history_retention.meta/field_history_retention/
      * https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_historyretentionpolicy.htm
      */
+    /*
     public static void updateHistoryRetentionPolicy() {
 
         // Create service
@@ -1485,10 +1503,12 @@ public with sharing class MetadataServiceExamples
                 DisplayType.TextArea => 'String',
                 DisplayType.Time => 'String',
                 DisplayType.URL => 'String'};
+    */
 
     /**
      * This is for demo purposes only, it requires more work and testing to refine
      **/
+    /*
     public static void addFields(MetadataService.FlowScreen flowScreen, List<SObjectField> fieldsToAdd) {
         for(SObjectField field : fieldsToAdd) {
             // Construct a FlowScreenField based on the SObjectField metadata
@@ -1531,7 +1551,7 @@ public with sharing class MetadataServiceExamples
         for(MetadataService.FileProperties fileProperty : fileProperties)
             System.debug(fileProperty.fullName);
     }
-
+    */
 
 	/**
 	 * Method cloneReport(String sFolderApiName, String sReportApiName, String tFolderApiName, String tReportApiName)
@@ -1540,6 +1560,7 @@ public with sharing class MetadataServiceExamples
 	 * @param tFolderApiName: api name of the (target) folder to create the cloned report in
 	 * @param tReportApiName: api name of the (target) cloned report 
 	 */
+    /*
 	public static void cloneReport(String sFolderApiName, String sReportApiName, String tFolderApiName, String tReportApiName) {
 	    MetadataService.MetadataPort service = new MetadataService.MetadataPort();
 	    service.SessionHeader = new MetadataService.SessionHeader_element();
@@ -1599,7 +1620,8 @@ public with sharing class MetadataServiceExamples
         newComponent.sortBy = 'RowLabelAscending';
         dashboard.leftSection.components.add(newComponent);
         handleSaveResults(service.updateMetadata(new List<MetadataService.Metadata> { dashboard })[0]);
-    }    	
+    }
+    */	
 	
     /**
      * Error occured processing component OrgPreference. create() not supported for OrgPreferenceSettings (FIELD_INTEGRITY_EXCEPTION). :-(
@@ -1621,19 +1643,12 @@ public with sharing class MetadataServiceExamples
     }
     */
 
-    public class MetadataServiceExamplesException extends Exception { }
-
-    public static MetadataService.MetadataPort createService()
-    {
-        MetadataService.MetadataPort service = new MetadataService.MetadataPort();
-        service.SessionHeader = new MetadataService.SessionHeader_element();
-        service.SessionHeader.sessionId = UserInfo.getSessionId();
-        return service;
-    }
+    //public class MetadataServiceExamplesException extends Exception { }
 
     /**
      * Example helper method to interpret a SaveResult, throws an exception if errors are found
      **/
+    /*
     public static void handleSaveResults(MetadataService.SaveResult saveResult)
     {
         // Nothing to see?
@@ -1657,10 +1672,12 @@ public with sharing class MetadataServiceExamples
         if(!saveResult.success)
             throw new MetadataServiceExamplesException('Request failed with no specified error.');
     }
+    */
 
     /**
      * Example helper method to interpret a SaveResult, throws an exception if errors are found
      **/
+    /*
     public static void handleDeleteResults(MetadataService.DeleteResult deleteResult)
     {
         // Nothing to see?
@@ -1684,10 +1701,12 @@ public with sharing class MetadataServiceExamples
         if(!deleteResult.success)
             throw new MetadataServiceExamplesException('Request failed with no specified error.');
     }
+    */
 
     /**
      * Example helper method to interpret a UpsertResult, throws an exception if errors are found
      **/
+    /*
     public static void handleUpsertResults(MetadataService.UpsertResult upsertResult)
     {
         // Nothing to see?
@@ -1711,4 +1730,5 @@ public with sharing class MetadataServiceExamples
         if(!upsertResult.success)
             throw new MetadataServiceExamplesException('Request failed with no specified error.');
     }
+    */
 }
